@@ -1,3 +1,3 @@
-# Learn Testcontainers - Modern Integration with Spring Boot
+# Learn Testcontainers - Advanced Real-World Scenarios
 
-This is the codebase for Module "Modern Integration with Spring Boot" of Learn Testcontainers.
+This is the codebase for Module "Advanced Real-World Scenarios" of Learn Testcontainers.

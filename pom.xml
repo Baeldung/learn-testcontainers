@@ -3,11 +3,11 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <description>The 'Learn Testcontainers' Course: Modern Integration with Spring Boot</description>
-    <name>modern-integration-with-spring-boot</name>
+    <description>The 'Learn Testcontainers' Course: Advanced Real-World Scenarios</description>
+    <name>advanced-real-world-scenarios</name>
 
     <groupId>com.baeldung</groupId>
-    <artifactId>ltc-modern-integration-with-spring-boot</artifactId>
+    <artifactId>ltc-advanced-real-world-scenarios</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
 
