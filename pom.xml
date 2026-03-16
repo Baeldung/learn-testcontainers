@@ -12,5 +12,11 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>sql-databases-start</module>
+        <module>sql-databases-end</module>
+        <module>nosql-testing-start</module>
+        <module>nosql-testing-end</module>
+        <module>message-brokers-start</module>
+        <module>message-brokers-end</module>
     </modules>
 </project>
