@@ -12,5 +12,11 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>container-lifecycle-start</module>
+        <module>container-lifecycle-end</module>
+        <module>getting-started-start</module>
+        <module>getting-started-end</module>
+        <module>networking-wait-start</module>
+        <module>networking-wait-end</module>
     </modules>
 </project>
