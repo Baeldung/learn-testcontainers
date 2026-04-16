@@ -4,11 +4,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 public record CampaignDto(
-    Long id,
-    String code,
-    String name,
-    String description,
-    Set<TaskDto> tasks) {
+        Long id,
+        String code,
+        String name,
+        String description,
+        Set<TaskDto> tasks) {
 
     public CampaignDto(Long id, String code, String name, String description) {
         this(id, code, name, description, new HashSet<>());

@@ -9,7 +9,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.testcontainers.containers.MongoDBContainer;
+import org.testcontainers.mongodb.MongoDBContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
@@ -17,7 +17,6 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.model.Filters;
 
 @Testcontainers
 class MongoDBContainerIntegrationTest {
@@ -26,45 +25,42 @@ class MongoDBContainerIntegrationTest {
     static MongoDBContainer mongoDBContainer = new MongoDBContainer("mongo:7");
 
     static MongoClient client;
+    static CampaignMongoRepository repository;
     MongoCollection<Document> collection;
 
     @BeforeAll
     static void setUpClient() {
         client = MongoClients.create(mongoDBContainer.getConnectionString());
+        repository = new CampaignMongoRepository(client);
     }
 
     @BeforeEach
     void setUp() {
-        MongoDatabase database = client.getDatabase("testdb");
-        collection = database.getCollection("students");
+        MongoDatabase database = client.getDatabase("ltc");
+        collection = database.getCollection("campaigns");
         collection.drop();
+        collection.insertMany(List.of(
+                new Document("code", "C1").append("name", "Campaign 1")
+                        .append("description", "Description of Campaign 1"),
+                new Document("code", "C2").append("name", "Campaign 2")
+                        .append("description", "About Campaign 2"),
+                new Document("code", "C3").append("name", "Campaign 3")
+                        .append("description", "About Campaign 3")));
     }
 
     @Test
-    void givenStudentDocuments_whenCounting_thenReturnsExpectedCount() {
-        collection.insertMany(List.of(
-            new Document("name", "Alice").append("age", 22),
-            new Document("name", "Bob").append("age", 25),
-            new Document("name", "Charlie").append("age", 19)
-        ));
-
-        long count = collection.countDocuments();
+    void givenCampaignDocuments_whenCounting_thenReturnsExpectedCount() {
+        long count = repository.count();
 
         assertEquals(3, count);
     }
 
     @Test
-    void givenStudentDocuments_whenQueryingByName_thenReturnsCorrectDocument() {
-        collection.insertMany(List.of(
-            new Document("name", "Alice").append("age", 22),
-            new Document("name", "Bob").append("age", 25),
-            new Document("name", "Charlie").append("age", 19)
-        ));
+    void givenCampaignDocuments_whenFindingByCode_thenReturnsCorrectDocument() {
+        Document result = repository.findByCode("C1");
 
-        Document result = collection.find(Filters.eq("name", "Alice")).first();
-
-        assertEquals("Alice", result.getString("name"));
-        assertEquals(22, result.getInteger("age"));
+        assertEquals("Campaign 1", result.getString("name"));
+        assertEquals("Description of Campaign 1", result.getString("description"));
     }
 
     @AfterAll

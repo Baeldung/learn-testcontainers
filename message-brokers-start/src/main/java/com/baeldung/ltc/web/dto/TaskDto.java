@@ -5,10 +5,10 @@ import java.time.LocalDate;
 import com.baeldung.ltc.persistence.model.TaskStatus;
 
 public record TaskDto(
-    Long id,
-    String name,
-    String description,
-    LocalDate dueDate,
-    TaskStatus status,
-    CampaignDto campaign) {
+        Long id,
+        String name,
+        String description,
+        LocalDate dueDate,
+        TaskStatus status,
+        CampaignDto campaign) {
 }

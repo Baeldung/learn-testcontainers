@@ -32,7 +32,7 @@ public class CampaignRestAPILiveTest {
     @Test
     public void givenNewCampaign_whenCreated_thenSuccess() {
         int index = random.nextInt(10000);
-        String code = "C" +  index;
+        String code = "C" + index;
         String name = "Campaign " + index;
         String description = "Description of Campaign " + index;
         CampaignDto newCampaign = new CampaignDto(null, code, name, description);

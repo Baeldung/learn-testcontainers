@@ -18,5 +18,7 @@
         <module>nosql-testing-end</module>
         <module>message-brokers-start</module>
         <module>message-brokers-end</module>
+        <module>mocking-external-apis-start</module>
+        <module>mocking-external-apis-end</module>
     </modules>
 </project>
