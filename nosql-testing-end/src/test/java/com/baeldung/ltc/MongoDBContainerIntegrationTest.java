@@ -39,13 +39,16 @@ class MongoDBContainerIntegrationTest {
         MongoDatabase database = client.getDatabase("ltc");
         collection = database.getCollection("campaigns");
         collection.drop();
-        collection.insertMany(List.of(
+        collection.insertMany(
+            List.of(
                 new Document("code", "C1").append("name", "Campaign 1")
-                        .append("description", "Description of Campaign 1"),
+                    .append("description", "Description of Campaign 1"),
                 new Document("code", "C2").append("name", "Campaign 2")
-                        .append("description", "About Campaign 2"),
+                    .append("description", "About Campaign 2"),
                 new Document("code", "C3").append("name", "Campaign 3")
-                        .append("description", "About Campaign 3")));
+                    .append("description", "About Campaign 3")
+            )
+        );
     }
 
     @Test
