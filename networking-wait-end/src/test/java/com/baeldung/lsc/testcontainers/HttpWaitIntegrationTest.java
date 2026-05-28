@@ -1,6 +1,10 @@
 package com.baeldung.lsc.testcontainers;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.net.HttpURLConnection;
+import java.net.URI;
+import java.net.URL;
 
 import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.GenericContainer;
@@ -8,7 +12,6 @@ import org.testcontainers.containers.wait.strategy.Wait;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
-// Requires a running Docker environment
 @Testcontainers
 class HttpWaitIntegrationTest {
 
@@ -18,7 +21,9 @@ class HttpWaitIntegrationTest {
       .waitingFor(Wait.forHttp("/"));
 
     @Test
-    void givenHttpWait_whenContainerStarts_thenNginxIsReady() {
-        assertTrue(nginx.isRunning());
+    void givenHttpWait_whenContainerStarts_thenNginxRespondsWithOK() throws Exception {
+        URL url = URI.create("http://" + nginx.getHost() + ":" + nginx.getMappedPort(80) + "/").toURL();
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        assertEquals(200, connection.getResponseCode());
     }
 }

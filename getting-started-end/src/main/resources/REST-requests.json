@@ -1,15 +1,15 @@
-{
+﻿{
 	"info": {
 		"_postman_id": "54f1d577-3684-46fc-91ab-9a4e636d81d4",
-		"name": "LS ",
+		"name": "Campaigns REST API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "M8",
+			"name": "Requests",
 			"item": [
 				{
-					"name": "basics",
+					"name": "get campaigns",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -28,7 +28,7 @@
 					"response": []
 				},
 				{
-					"name": "request/response",
+					"name": "create campaign",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -63,7 +63,7 @@
 					"response": []
 				},
 				{
-					"name": "path variable",
+					"name": "get campaign 1",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -83,64 +83,25 @@
 					"response": []
 				},
 				{
-					"name": "request param",
+					"name": "get campaigns by name",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/campaigns/by-name?name=Campaign 2",
+							"raw": "http://localhost:8080/campaigns?name=Campaign 2",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"campaigns",
-								"by-name"
+								"campaigns"
 							],
 							"query": [
 								{
 									"key": "name",
 									"value": "Campaign 2"
 								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "exception handling",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:8080/campaigns/4",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"campaigns",
-								"4"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "exception handling 2",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "localhost:8080/campaigns/4",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"campaigns",
-								"4"
 							]
 						}
 					},
