@@ -1,0 +1,50 @@
+package com.baeldung.ltc.persistence.repository;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import com.baeldung.ltc.persistence.model.Campaign;
+import java.util.Optional;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.DynamicPropertyRegistry;
+import org.springframework.test.context.DynamicPropertySource;
+import org.testcontainers.postgresql.PostgreSQLContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
+import org.testcontainers.utility.DockerImageName;
+
+@SpringBootTest
+@Testcontainers
+public class CampaignRepositoryIntegrationTest {
+
+    @Container
+    static PostgreSQLContainer postgres = new PostgreSQLContainer(DockerImageName.parse("postgres:17"))
+        .withInitScript("init-script.sql");
+
+    @DynamicPropertySource
+    static void configureProperties(DynamicPropertyRegistry registry) {
+        registry.add("spring.datasource.url", postgres::getJdbcUrl);
+        registry.add("spring.datasource.username", postgres::getUsername);
+        registry.add("spring.datasource.password", postgres::getPassword);
+    }
+
+    @Autowired
+    CampaignRepository campaignRepository;
+
+    @Test
+    public void givenNewCampaign_whenSaved_thenSuccess() {
+        Campaign newCampaign = new Campaign("CTEST-1", "Test Campaign 1", "Description for campaign CTEST-1");
+        assertNotNull(campaignRepository.save(newCampaign));
+    }
+
+    @Test
+    public void givenCampaignCreated_whenFindById_thenSuccess() {
+        Campaign newCampaign = new Campaign("CTEST-2", "Test Campaign 2", "Description for campaign CTEST-2");
+        campaignRepository.save(newCampaign);
+
+        Optional<Campaign> retrievedCampaign = campaignRepository.findById(newCampaign.getId());
+        assertEquals(newCampaign.getCode(), retrievedCampaign.get().getCode());
+    }
+}

@@ -12,5 +12,11 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>service-connection-start</module>
+        <module>service-connection-end</module>
+        <module>local-dev-start</module>
+        <module>local-dev-end</module>
+        <module>container-reuse-start</module>
+        <module>container-reuse-end</module>
     </modules>
 </project>
