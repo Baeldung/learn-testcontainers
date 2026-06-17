@@ -2,7 +2,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <description>Mocking External APIs with Testcontainers - Start Project</description>
+    <description>Learn Testcontainers - Mocking External APIs with Testcontainers - Start</description>
     <name>mocking-external-apis-start</name>
 
     <groupId>com.baeldung</groupId>
@@ -67,17 +67,6 @@
             <artifactId>testcontainers-junit-jupiter</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.testcontainers</groupId>
-            <artifactId>testcontainers-mockserver</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mock-server</groupId>
-            <artifactId>mockserver-client-java</artifactId>
-            <version>${mockserver.version}</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
     <build>
@@ -102,7 +91,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>25</java.version>
         <testcontainers.version>2.0.3</testcontainers.version>
-        <mockserver.version>5.15.0</mockserver.version>
     </properties>
 
 </project>

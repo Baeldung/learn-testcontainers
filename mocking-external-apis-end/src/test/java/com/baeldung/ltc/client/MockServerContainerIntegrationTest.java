@@ -3,7 +3,9 @@ package com.baeldung.ltc.client;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockserver.model.HttpRequest.request;
 import static org.mockserver.model.HttpResponse.response;
+import static org.mockserver.model.JsonBody.json;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -40,6 +42,13 @@ class MockServerContainerIntegrationTest {
         mockServerClient.reset();
     }
 
+    @AfterAll
+    static void tearDownOnce() {
+        if (mockServerClient != null) {
+            mockServerClient.close();
+        }
+    }
+
     @Test
     void givenSimulatedResponse_whenNotifyCampaignCreated_thenReturnsNotificationId() {
         mockServerClient
@@ -49,7 +58,7 @@ class MockServerContainerIntegrationTest {
                 .respond(response()
                         .withStatusCode(200)
                         .withHeader("Content-Type", "application/json")
-                        .withBody("{\"notificationId\":\"NOTIF-001\"}"));
+                        .withBody(json("{\"notificationId\":\"NOTIF-001\"}")));
 
         Campaign campaign = new Campaign("CAMP-001", "Summer Sale", "Summer sale campaign");
 
@@ -67,7 +76,7 @@ class MockServerContainerIntegrationTest {
                 .respond(response()
                         .withStatusCode(200)
                         .withHeader("Content-Type", "application/json")
-                        .withBody("{\"notificationId\":\"NOTIF-001\"}"));
+                        .withBody(json("{\"notificationId\":\"NOTIF-001\"}")));
 
         Campaign campaign = new Campaign("CAMP-001", "Summer Sale", "Summer sale campaign");
 
@@ -77,7 +86,7 @@ class MockServerContainerIntegrationTest {
                 request()
                         .withMethod("POST")
                         .withPath("/notifications/campaigns")
-                        .withBody("{\"code\":\"CAMP-001\",\"name\":\"Summer Sale\"}"),
+                        .withBody(json("{\"code\":\"CAMP-001\",\"name\":\"Summer Sale\"}")),
                 VerificationTimes.exactly(1));
     }
 }

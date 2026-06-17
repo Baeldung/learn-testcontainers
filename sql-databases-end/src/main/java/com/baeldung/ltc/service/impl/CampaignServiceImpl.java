@@ -2,9 +2,7 @@ package com.baeldung.ltc.service.impl;
 
 import java.util.Optional;
 
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.baeldung.ltc.persistence.model.Campaign;
 import com.baeldung.ltc.persistence.repository.CampaignRepository;

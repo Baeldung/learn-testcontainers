@@ -3,10 +3,8 @@ package com.baeldung.ltc.service.impl;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.baeldung.ltc.persistence.model.Task;
-import com.baeldung.ltc.persistence.model.TaskStatus;
 import com.baeldung.ltc.persistence.repository.TaskRepository;
 import com.baeldung.ltc.service.TaskService;
 
