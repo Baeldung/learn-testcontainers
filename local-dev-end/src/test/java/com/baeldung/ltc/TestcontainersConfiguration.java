@@ -14,7 +14,8 @@ public class TestcontainersConfiguration {
     @Bean
     @ServiceConnection
     PostgreSQLContainer postgresContainer() {
-        return new PostgreSQLContainer(DockerImageName.parse("postgres:17")).withInitScript("init-script.sql");
+        return new PostgreSQLContainer(DockerImageName.parse("postgres:17"))
+          .withInitScript("init-script.sql");
     }
 
     @Bean
@@ -26,6 +27,7 @@ public class TestcontainersConfiguration {
     @Bean
     @ServiceConnection(name = "redis")
     GenericContainer<?> redisContainer() {
-        return new GenericContainer<>(DockerImageName.parse("redis:7")).withExposedPorts(6379);
+        return new GenericContainer<>(DockerImageName.parse("redis:7"))
+          .withExposedPorts(6379);
     }
 }
